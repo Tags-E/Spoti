@@ -1,0 +1,24 @@
+{
+  "name": "Freeflow Music",
+  "short_name": "Freeflow",
+  "description": "Free, nonstop music without a premium membership.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101312",
+  "theme_color": "#c6e37e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/freeflow-icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/freeflow-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

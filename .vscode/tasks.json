@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Freeflow",
+			"type": "shell",
+			"command": "node_modules\\.bin\\vite.cmd",
+			"args": [
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install Node and Build Freeflow",
+			"type": "shell",
+			"command": "$release = Invoke-RestMethod 'https://nodejs.org/dist/index.json' | Where-Object { $_.lts -and $_.version -like 'v22.*' } | Select-Object -First 1; $root = Join-Path $env:USERPROFILE '.freeflow-node'; $zip = Join-Path $env:TEMP 'freeflow-node.zip'; if (-not (Test-Path $root)) { New-Item -ItemType Directory -Path $root | Out-Null }; Invoke-WebRequest \"https://nodejs.org/dist/$($release.version)/node-$($release.version)-win-x64.zip\" -OutFile $zip; Expand-Archive -Path $zip -DestinationPath $root -Force; $nodeDir = Join-Path $root \"node-$($release.version)-win-x64\"; & (Join-Path $nodeDir 'npm.cmd') install --prefix 'c:\\Spotify Clone'; & (Join-Path $nodeDir 'npm.cmd') run build --prefix 'c:\\Spotify Clone'",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install Node LTS and Build Freeflow",
+			"type": "shell",
+			"command": "$version = 'v22.23.2'; $root = Join-Path $env:USERPROFILE '.freeflow-node'; $zip = Join-Path $env:TEMP 'freeflow-node.zip'; New-Item -ItemType Directory -Path $root -Force | Out-Null; Invoke-WebRequest \"https://nodejs.org/dist/$version/node-$version-win-x64.zip\" -OutFile $zip; Expand-Archive -Path $zip -DestinationPath $root -Force; $nodeDir = Join-Path $root \"node-$version-win-x64\"; & (Join-Path $nodeDir 'npm.cmd') install --prefix 'c:\\Spotify Clone'; & (Join-Path $nodeDir 'npm.cmd') run build --prefix 'c:\\Spotify Clone'",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install Node 20 Runtime",
+			"type": "shell",
+			"command": "Invoke-WebRequest 'https://nodejs.org/dist/v20.20.2/node-v20.20.2-win-x64.zip' -OutFile \"$env:TEMP\\freeflow-node20.zip\"; Expand-Archive -Path \"$env:TEMP\\freeflow-node20.zip\" -DestinationPath \"$env:USERPROFILE\\.freeflow-node\" -Force",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Portable Git",
+			"type": "shell",
+			"command": "$release = Invoke-RestMethod 'https://api.github.com/repos/git-for-windows/git/releases/latest'; $asset = $release.assets | Where-Object { $_.name -like 'MinGit-*-64-bit.zip' } | Select-Object -First 1; $root = Join-Path $env:USERPROFILE '.freeflow-git'; $zip = Join-Path $env:TEMP 'freeflow-git.zip'; New-Item -ItemType Directory -Path $root -Force | Out-Null; Invoke-WebRequest $asset.browser_download_url -OutFile $zip; Expand-Archive -Path $zip -DestinationPath $root -Force",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
