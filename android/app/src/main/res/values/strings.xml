@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Freeflow Music</string>
+    <string name="title_activity_main">Freeflow Music</string>
+    <string name="package_name">com.tagse.freeflow</string>
+    <string name="custom_url_scheme">com.tagse.freeflow</string>
+</resources>
